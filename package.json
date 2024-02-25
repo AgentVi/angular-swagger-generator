@@ -6,6 +6,7 @@
       "@angular/core": "~12.0.5"
     },
     "services": "services.ts",
+    "typings": "agentvi-ng-core-lib.d.ts",
     "sideEffects": false,
     "dependencies": {
       "tslib": "^2.2.0"
