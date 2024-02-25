@@ -1,0 +1,13 @@
+{
+    "name": "@agentvi/angular-swagger-generator",
+    "version": "0.0.1",
+    "peerDependencies": {
+      "@angular/common": "~12.0.5",
+      "@angular/core": "~12.0.5"
+    },
+    "services": "services.ts",
+    "sideEffects": false,
+    "dependencies": {
+      "tslib": "^2.2.0"
+    }
+  }
