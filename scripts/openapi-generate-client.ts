@@ -14,3 +14,4 @@ const output = execSync(
 
 
 console.log(output);
+console.log('done');
