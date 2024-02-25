@@ -1,14 +1,10 @@
 {
     "name": "@agentvi/angular-swagger-generator",
     "version": "0.0.1",
-    "peerDependencies": {
-      "@angular/common": "~12.0.5",
-      "@angular/core": "~12.0.5"
+    "scripts": {
+        "openapi-generate:client": "npx ts-node src/scripts/openapi-generate-client.ts"
     },
-    "services": "services.ts",
-    "typings": "agentvi-ng-core-lib.d.ts",
-    "sideEffects": false,
     "dependencies": {
-      "tslib": "^2.2.0"
+        "@openapitools/openapi-generator-cli": "^2.9.0"
     }
-  }
+}
