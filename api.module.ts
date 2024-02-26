@@ -2,12 +2,18 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
+import { AccountSettingsService } from './api/accountSettings.service';
+import { RulesService } from './api/rules.service';
+import { SensorsService } from './api/sensors.service';
 
 @NgModule({
   imports:      [],
   declarations: [],
   exports:      [],
-  providers: []
+  providers: [
+    AccountSettingsService,
+    RulesService,
+    SensorsService ]
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<ApiModule> {

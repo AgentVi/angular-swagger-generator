@@ -1,7 +1,10 @@
 export * from './accountSettings.service';
 import { AccountSettingsService } from './accountSettings.service';
+export * from './accountSettings.serviceInterface';
 export * from './rules.service';
 import { RulesService } from './rules.service';
+export * from './rules.serviceInterface';
 export * from './sensors.service';
 import { SensorsService } from './sensors.service';
+export * from './sensors.serviceInterface';
 export const APIS = [AccountSettingsService, RulesService, SensorsService];

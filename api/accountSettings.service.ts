@@ -30,13 +30,14 @@ import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSe
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
+import {
+    AccountSettingsServiceInterface
+} from './accountSettings.serviceInterface';
 
 
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AccountSettingsService {
+@Injectable()
+export class AccountSettingsService implements AccountSettingsServiceInterface {
 
     protected basePath = 'http://localhost:8088';
     public defaultHeaders = new HttpHeaders();

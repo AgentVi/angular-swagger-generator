@@ -24,13 +24,14 @@ import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetRuleSpecResp
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
+import {
+    RulesServiceInterface
+} from './rules.serviceInterface';
 
 
 
-@Injectable({
-  providedIn: 'root'
-})
-export class RulesService {
+@Injectable()
+export class RulesService implements RulesServiceInterface {
 
     protected basePath = 'http://localhost:8088';
     public defaultHeaders = new HttpHeaders();

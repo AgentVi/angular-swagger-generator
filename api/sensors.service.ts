@@ -26,13 +26,14 @@ import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorRes
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
+import {
+    SensorsServiceInterface
+} from './sensors.serviceInterface';
 
 
 
-@Injectable({
-  providedIn: 'root'
-})
-export class SensorsService {
+@Injectable()
+export class SensorsService implements SensorsServiceInterface {
 
     protected basePath = 'http://localhost:8088';
     public defaultHeaders = new HttpHeaders();

@@ -1,11 +1,13 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 api.module.ts
 api/accountSettings.service.ts
+api/accountSettings.serviceInterface.ts
 api/api.ts
 api/rules.service.ts
+api/rules.serviceInterface.ts
 api/sensors.service.ts
+api/sensors.serviceInterface.ts
 configuration.ts
 encoder.ts
 git_push.sh
