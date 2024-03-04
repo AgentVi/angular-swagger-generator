@@ -9,11 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeMode } from './githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeMode';
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeValueUiInfo } from './githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeValueUiInfo';
+import { AnalyticsConfigApiV2RuleSpecAttributeMode } from './analyticsConfigApiV2RuleSpecAttributeMode';
+import { AnalyticsConfigApiV2RuleSpecAttributeValueUiInfo } from './analyticsConfigApiV2RuleSpecAttributeValueUiInfo';
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeUiInfo { 
+export interface AnalyticsConfigApiV2RuleSpecAttributeUiInfo { 
     /**
      * Human-readable description of the attribute
      */
@@ -25,7 +25,7 @@ export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpe
     /**
      * UI info about the include/exclude modes
      */
-    modes?: Array<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeMode>;
+    modes?: Array<AnalyticsConfigApiV2RuleSpecAttributeMode>;
     /**
      * Human-readable name of the attribute
      */
@@ -33,6 +33,6 @@ export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpe
     /**
      * UI info about the available attribute values
      */
-    values?: Array<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeValueUiInfo>;
+    values?: Array<AnalyticsConfigApiV2RuleSpecAttributeValueUiInfo>;
 }
 

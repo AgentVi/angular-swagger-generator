@@ -11,7 +11,7 @@
  */
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsRequest { 
+export interface AnalyticsConfigApiV2UpdateAccountSettingsRequest { 
     /**
      * SysAdmins and Support user types can specify the Account to use for changing MaxChannels.
      */

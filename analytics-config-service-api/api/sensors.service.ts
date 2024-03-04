@@ -19,9 +19,9 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorRequest } from '../model/githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorRequest';
+import { AnalyticsConfigApiV2CreateSensorRequest } from '../model/analyticsConfigApiV2CreateSensorRequest';
 // @ts-ignore
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorResponse } from '../model/githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorResponse';
+import { AnalyticsConfigApiV2CreateSensorResponse } from '../model/analyticsConfigApiV2CreateSensorResponse';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -32,7 +32,9 @@ import {
 
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SensorsService implements SensorsServiceInterface {
 
     protected basePath = 'http://localhost:8088';
@@ -100,10 +102,10 @@ export class SensorsService implements SensorsServiceInterface {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public v2SensorsPost(request: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorResponse>;
-    public v2SensorsPost(request: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorResponse>>;
-    public v2SensorsPost(request: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorResponse>>;
-    public v2SensorsPost(request: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public v2SensorsPost(request: AnalyticsConfigApiV2CreateSensorRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<AnalyticsConfigApiV2CreateSensorResponse>;
+    public v2SensorsPost(request: AnalyticsConfigApiV2CreateSensorRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<AnalyticsConfigApiV2CreateSensorResponse>>;
+    public v2SensorsPost(request: AnalyticsConfigApiV2CreateSensorRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<AnalyticsConfigApiV2CreateSensorResponse>>;
+    public v2SensorsPost(request: AnalyticsConfigApiV2CreateSensorRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling v2SensorsPost.');
         }
@@ -114,7 +116,7 @@ export class SensorsService implements SensorsServiceInterface {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -153,7 +155,7 @@ export class SensorsService implements SensorsServiceInterface {
         }
 
         let localVarPath = `/v2/sensors`;
-        return this.httpClient.request<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorResponse>('post', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<AnalyticsConfigApiV2CreateSensorResponse>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: request,

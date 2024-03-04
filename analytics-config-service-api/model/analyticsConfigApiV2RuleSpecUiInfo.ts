@@ -9,16 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { AnalyticsConfigApiV2RuleSpecAttributeUiInfo } from './analyticsConfigApiV2RuleSpecAttributeUiInfo';
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeMode { 
-    /**
-     * Id of the mode, one of \"include\" or \"exclude\"
-     */
-    id?: string;
-    /**
-     * Human-readable label of the mode
-     */
-    label?: string;
+export interface AnalyticsConfigApiV2RuleSpecUiInfo { 
+    attributes?: Array<AnalyticsConfigApiV2RuleSpecAttributeUiInfo>;
 }
 

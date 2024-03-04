@@ -11,7 +11,7 @@
  */
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorRequest { 
+export interface AnalyticsConfigApiV2CreateSensorRequest { 
     applianceId?: string;
     folderId?: string;
     imageResolution?: string;

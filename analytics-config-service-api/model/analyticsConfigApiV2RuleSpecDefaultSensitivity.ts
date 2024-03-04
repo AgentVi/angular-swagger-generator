@@ -9,24 +9,21 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { AnalyticsConfigApiV2RuleSensitivity } from './analyticsConfigApiV2RuleSensitivity';
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsResponse { 
+export interface AnalyticsConfigApiV2RuleSpecDefaultSensitivity { 
     /**
-     * Account Id
+     * Default value
      */
-    accountId?: string;
+    defaultValue?: AnalyticsConfigApiV2RuleSensitivity;
     /**
-     * Flag to indicate that anomaly rule is enabled by default
+     * Max value
      */
-    enableAnomalyByDefault?: boolean;
+    max?: AnalyticsConfigApiV2RuleSensitivity;
     /**
-     * Max clip length in secs, 0 means max length of 8 seconds
+     * Min value
      */
-    eventClipLengthSec?: number;
-    /**
-     * Limit the number of channels per account (0 means no limit)
-     */
-    maxChannels?: number;
+    min?: AnalyticsConfigApiV2RuleSensitivity;
 }
 

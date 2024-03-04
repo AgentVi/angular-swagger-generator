@@ -13,8 +13,8 @@ import { HttpHeaders }                                       from '@angular/comm
 
 import { Observable }                                        from 'rxjs';
 
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorRequest } from '../model/models';
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorResponse } from '../model/models';
+import { AnalyticsConfigApiV2CreateSensorRequest } from '../model/models';
+import { AnalyticsConfigApiV2CreateSensorResponse } from '../model/models';
 
 
 import { Configuration }                                     from '../configuration';
@@ -30,6 +30,6 @@ export interface SensorsServiceInterface {
      * 
      * @param request 
      */
-    v2SensorsPost(request: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorRequest, extraHttpRequestParams?: any): Observable<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorResponse>;
+    v2SensorsPost(request: AnalyticsConfigApiV2CreateSensorRequest, extraHttpRequestParams?: any): Observable<AnalyticsConfigApiV2CreateSensorResponse>;
 
 }

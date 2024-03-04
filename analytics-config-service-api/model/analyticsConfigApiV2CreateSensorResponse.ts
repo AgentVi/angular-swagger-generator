@@ -9,10 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeUiInfo } from './githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeUiInfo';
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecUiInfo { 
-    attributes?: Array<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeUiInfo>;
+export interface AnalyticsConfigApiV2CreateSensorResponse { 
+    id?: string;
 }
 

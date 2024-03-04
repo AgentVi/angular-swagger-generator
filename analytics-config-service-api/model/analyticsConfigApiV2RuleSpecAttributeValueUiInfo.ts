@@ -11,7 +11,7 @@
  */
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttributeValueUiInfo { 
+export interface AnalyticsConfigApiV2RuleSpecAttributeValueUiInfo { 
     /**
      * Human-readable description of the attribute value
      */

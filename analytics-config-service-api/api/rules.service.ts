@@ -19,7 +19,7 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetRuleSpecResponse } from '../model/githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetRuleSpecResponse';
+import { AnalyticsConfigApiV2GetRuleSpecResponse } from '../model/analyticsConfigApiV2GetRuleSpecResponse';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -30,7 +30,9 @@ import {
 
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RulesService implements RulesServiceInterface {
 
     protected basePath = 'http://localhost:8088';
@@ -95,15 +97,15 @@ export class RulesService implements RulesServiceInterface {
     /**
      * Get the available rules for this Account (and, optionally, the specified Sensor).
      * @param sensorId Optionally limit the response to what is available for the Sensor with the specified ID.
-     * @param language Optionally specify which language to use for returned human-readable texts. Only applicable when \&#39;responseFields\&#39; param contains \&#39;ui\&#39;
+     * @param language Optionally specify which language to use for returned human-readable texts. Only applicable when \&#39;responseFields\&#39; param contains \&#39;uiInfo\&#39;
      * @param responseFields Comma-separated list of fields to include in response. By default, no fields will be populated.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public v2RulesSpecGet(sensorId?: string, language?: 'en-US' | 'es-ES' | 'fr-FR' | 'ja-JP' | 'de-DE' | 'ru-RU' | 'hi-IN' | 'zh-CN', responseFields?: Array<'rules' | 'attributes' | 'ui'>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetRuleSpecResponse>;
-    public v2RulesSpecGet(sensorId?: string, language?: 'en-US' | 'es-ES' | 'fr-FR' | 'ja-JP' | 'de-DE' | 'ru-RU' | 'hi-IN' | 'zh-CN', responseFields?: Array<'rules' | 'attributes' | 'ui'>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetRuleSpecResponse>>;
-    public v2RulesSpecGet(sensorId?: string, language?: 'en-US' | 'es-ES' | 'fr-FR' | 'ja-JP' | 'de-DE' | 'ru-RU' | 'hi-IN' | 'zh-CN', responseFields?: Array<'rules' | 'attributes' | 'ui'>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetRuleSpecResponse>>;
-    public v2RulesSpecGet(sensorId?: string, language?: 'en-US' | 'es-ES' | 'fr-FR' | 'ja-JP' | 'de-DE' | 'ru-RU' | 'hi-IN' | 'zh-CN', responseFields?: Array<'rules' | 'attributes' | 'ui'>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public v2RulesSpecGet(sensorId?: string, language?: 'en-US' | 'es-ES' | 'fr-FR' | 'ja-JP' | 'de-DE' | 'ru-RU' | 'hi-IN' | 'zh-CN', responseFields?: Array<'rules' | 'attributes' | 'uiInfo'>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<AnalyticsConfigApiV2GetRuleSpecResponse>;
+    public v2RulesSpecGet(sensorId?: string, language?: 'en-US' | 'es-ES' | 'fr-FR' | 'ja-JP' | 'de-DE' | 'ru-RU' | 'hi-IN' | 'zh-CN', responseFields?: Array<'rules' | 'attributes' | 'uiInfo'>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<AnalyticsConfigApiV2GetRuleSpecResponse>>;
+    public v2RulesSpecGet(sensorId?: string, language?: 'en-US' | 'es-ES' | 'fr-FR' | 'ja-JP' | 'de-DE' | 'ru-RU' | 'hi-IN' | 'zh-CN', responseFields?: Array<'rules' | 'attributes' | 'uiInfo'>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<AnalyticsConfigApiV2GetRuleSpecResponse>>;
+    public v2RulesSpecGet(sensorId?: string, language?: 'en-US' | 'es-ES' | 'fr-FR' | 'ja-JP' | 'de-DE' | 'ru-RU' | 'hi-IN' | 'zh-CN', responseFields?: Array<'rules' | 'attributes' | 'uiInfo'>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (sensorId !== undefined && sensorId !== null) {
@@ -125,7 +127,7 @@ export class RulesService implements RulesServiceInterface {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -156,7 +158,7 @@ export class RulesService implements RulesServiceInterface {
         }
 
         let localVarPath = `/v2/rules/spec`;
-        return this.httpClient.request<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetRuleSpecResponse>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<AnalyticsConfigApiV2GetRuleSpecResponse>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

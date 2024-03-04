@@ -11,14 +11,22 @@
  */
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSensitivity { 
+export interface AnalyticsConfigApiV2GetAccountSettingsResponse { 
     /**
-     * How many anomaly events in a time unit
+     * Account Id
      */
-    events?: number;
+    accountId?: string;
     /**
-     * Time unit
+     * Flag to indicate that anomaly rule is enabled by default
      */
-    timeUnit?: string;
+    enableAnomalyByDefault?: boolean;
+    /**
+     * Max clip length in secs, 0 means max length of 8 seconds
+     */
+    eventClipLengthSec?: number;
+    /**
+     * Limit the number of channels per account (0 means no limit)
+     */
+    maxChannels?: number;
 }
 

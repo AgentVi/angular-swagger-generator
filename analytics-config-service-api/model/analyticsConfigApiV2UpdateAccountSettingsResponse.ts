@@ -11,7 +11,7 @@
  */
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse { 
+export interface AnalyticsConfigApiV2UpdateAccountSettingsResponse { 
     /**
      * Account Id
      */

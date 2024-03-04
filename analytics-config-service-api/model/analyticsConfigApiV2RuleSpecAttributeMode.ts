@@ -11,22 +11,14 @@
  */
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecAttribute { 
+export interface AnalyticsConfigApiV2RuleSpecAttributeMode { 
     /**
-     * The id of the mode (include/exclude) that is selected by default
-     */
-    defaultMode?: string;
-    /**
-     * The attribute id
+     * Id of the mode, one of \"include\" or \"exclude\"
      */
     id?: string;
     /**
-     * Available object types for this attribute
+     * Human-readable label of the mode
      */
-    objectTypes?: Array<number>;
-    /**
-     * The available value ids for this attribute
-     */
-    values?: Array<string>;
+    label?: string;
 }
 

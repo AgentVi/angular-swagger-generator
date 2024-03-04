@@ -11,7 +11,14 @@
  */
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2CreateSensorResponse { 
-    id?: string;
+export interface AnalyticsConfigApiV2RuleSensitivity { 
+    /**
+     * How many anomaly events in a time unit
+     */
+    events?: number;
+    /**
+     * Time unit
+     */
+    timeUnit?: string;
 }
 

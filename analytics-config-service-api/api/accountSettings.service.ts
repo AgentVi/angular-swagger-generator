@@ -19,13 +19,13 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2FindAccountSettingsResponse } from '../model/githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2FindAccountSettingsResponse';
+import { AnalyticsConfigApiV2FindAccountSettingsResponse } from '../model/analyticsConfigApiV2FindAccountSettingsResponse';
 // @ts-ignore
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse } from '../model/githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse';
+import { AnalyticsConfigApiV2GetAccountSettingsResponse } from '../model/analyticsConfigApiV2GetAccountSettingsResponse';
 // @ts-ignore
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsRequest } from '../model/githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsRequest';
+import { AnalyticsConfigApiV2UpdateAccountSettingsRequest } from '../model/analyticsConfigApiV2UpdateAccountSettingsRequest';
 // @ts-ignore
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsResponse } from '../model/githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsResponse';
+import { AnalyticsConfigApiV2UpdateAccountSettingsResponse } from '../model/analyticsConfigApiV2UpdateAccountSettingsResponse';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -36,7 +36,9 @@ import {
 
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AccountSettingsService implements AccountSettingsServiceInterface {
 
     protected basePath = 'http://localhost:8088';
@@ -99,14 +101,19 @@ export class AccountSettingsService implements AccountSettingsServiceInterface {
     }
 
     /**
-     * Fetch the analytics settings for the Account that the user is logged into.
+     * Fetch the analytics settings for the specified Account.
+     * Only callable by a user of type SysAdmin or Support.
+     * @param accountId Account ID
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public v2AccountSettingsCurrentGet(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse>;
-    public v2AccountSettingsCurrentGet(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse>>;
-    public v2AccountSettingsCurrentGet(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse>>;
-    public v2AccountSettingsCurrentGet(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public v2AccountSettingsAccountIdGet(accountId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<AnalyticsConfigApiV2GetAccountSettingsResponse>;
+    public v2AccountSettingsAccountIdGet(accountId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<AnalyticsConfigApiV2GetAccountSettingsResponse>>;
+    public v2AccountSettingsAccountIdGet(accountId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<AnalyticsConfigApiV2GetAccountSettingsResponse>>;
+    public v2AccountSettingsAccountIdGet(accountId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (accountId === null || accountId === undefined) {
+            throw new Error('Required parameter accountId was null or undefined when calling v2AccountSettingsAccountIdGet.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -114,7 +121,67 @@ export class AccountSettingsService implements AccountSettingsServiceInterface {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/v2/account-settings/${this.configuration.encodeParam({name: "accountId", value: accountId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: undefined})}`;
+        return this.httpClient.request<AnalyticsConfigApiV2GetAccountSettingsResponse>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                transferCache: localVarTransferCache,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Fetch the analytics settings for the Account that the user is logged into.
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public v2AccountSettingsCurrentGet(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<AnalyticsConfigApiV2GetAccountSettingsResponse>;
+    public v2AccountSettingsCurrentGet(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<AnalyticsConfigApiV2GetAccountSettingsResponse>>;
+    public v2AccountSettingsCurrentGet(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<AnalyticsConfigApiV2GetAccountSettingsResponse>>;
+    public v2AccountSettingsCurrentGet(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -145,7 +212,7 @@ export class AccountSettingsService implements AccountSettingsServiceInterface {
         }
 
         let localVarPath = `/v2/account-settings/current`;
-        return this.httpClient.request<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<AnalyticsConfigApiV2GetAccountSettingsResponse>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -163,10 +230,10 @@ export class AccountSettingsService implements AccountSettingsServiceInterface {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public v2AccountSettingsGet(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2FindAccountSettingsResponse>;
-    public v2AccountSettingsGet(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2FindAccountSettingsResponse>>;
-    public v2AccountSettingsGet(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2FindAccountSettingsResponse>>;
-    public v2AccountSettingsGet(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public v2AccountSettingsGet(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<AnalyticsConfigApiV2FindAccountSettingsResponse>;
+    public v2AccountSettingsGet(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<AnalyticsConfigApiV2FindAccountSettingsResponse>>;
+    public v2AccountSettingsGet(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<AnalyticsConfigApiV2FindAccountSettingsResponse>>;
+    public v2AccountSettingsGet(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -174,7 +241,7 @@ export class AccountSettingsService implements AccountSettingsServiceInterface {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -205,68 +272,7 @@ export class AccountSettingsService implements AccountSettingsServiceInterface {
         }
 
         let localVarPath = `/v2/account-settings`;
-        return this.httpClient.request<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2FindAccountSettingsResponse>('get', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                transferCache: localVarTransferCache,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Fetch the analytics settings for the specified Account.
-     * Only callable by a user of type SysAdmin or Support.
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public v2AccountSettingsIdGet(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse>;
-    public v2AccountSettingsIdGet(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse>>;
-    public v2AccountSettingsIdGet(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse>>;
-    public v2AccountSettingsIdGet(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                '*/*'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/v2/account-settings/:id`;
-        return this.httpClient.request<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<AnalyticsConfigApiV2FindAccountSettingsResponse>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -286,10 +292,10 @@ export class AccountSettingsService implements AccountSettingsServiceInterface {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public v2AccountSettingsPatch(request: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsResponse>;
-    public v2AccountSettingsPatch(request: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsResponse>>;
-    public v2AccountSettingsPatch(request: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsResponse>>;
-    public v2AccountSettingsPatch(request: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public v2AccountSettingsPatch(request: AnalyticsConfigApiV2UpdateAccountSettingsRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<AnalyticsConfigApiV2UpdateAccountSettingsResponse>;
+    public v2AccountSettingsPatch(request: AnalyticsConfigApiV2UpdateAccountSettingsRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<AnalyticsConfigApiV2UpdateAccountSettingsResponse>>;
+    public v2AccountSettingsPatch(request: AnalyticsConfigApiV2UpdateAccountSettingsRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<AnalyticsConfigApiV2UpdateAccountSettingsResponse>>;
+    public v2AccountSettingsPatch(request: AnalyticsConfigApiV2UpdateAccountSettingsRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (request === null || request === undefined) {
             throw new Error('Required parameter request was null or undefined when calling v2AccountSettingsPatch.');
         }
@@ -300,7 +306,7 @@ export class AccountSettingsService implements AccountSettingsServiceInterface {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -339,7 +345,7 @@ export class AccountSettingsService implements AccountSettingsServiceInterface {
         }
 
         let localVarPath = `/v2/account-settings`;
-        return this.httpClient.request<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2UpdateAccountSettingsResponse>('patch', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<AnalyticsConfigApiV2UpdateAccountSettingsResponse>('patch', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: request,

@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV1RuleDefault } from './githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV1RuleDefault';
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecDefaultSensitivity } from './githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecDefaultSensitivity';
+import { AnalyticsConfigApiV2RuleSpecDefaultSensitivity } from './analyticsConfigApiV2RuleSpecDefaultSensitivity';
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecRule { 
+export interface AnalyticsConfigApiV2RuleSpecRule { 
     /**
      * Available auto sensitivity values for this rule
      */
@@ -31,15 +31,11 @@ export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpe
      */
     dwellTime?: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV1RuleDefault;
     /**
-     * Used in conjunction with WatchListId to indicate if this rule should trigger if the object is found in the watchlist or not. Added for MHA
-     */
-    existsInWatchlist?: Array<boolean>;
-    /**
      * Time interval [seconds] between statistics reports (for statistics rules)
      */
     intervalTime?: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV1RuleDefault;
     /**
-     * Commented out for now since I suspect it will not be used ExcludeObjectTypes []enums.ObjectTypeCode          `json:\"excludeObjectTypes,omitempty\"` // Excluded object types for this rule type. Is nil/omitted if no object types are excluded.
+     * Does this rule require line drawing (true) or area drawing (false)
      */
     isLineDrawing?: boolean;
     /**
@@ -69,6 +65,10 @@ export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpe
     /**
      * Sensitivity (for Anomaly rule only), defines the expected number of events per day
      */
-    sensitivity?: GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2RuleSpecDefaultSensitivity;
+    sensitivity?: AnalyticsConfigApiV2RuleSpecDefaultSensitivity;
+    /**
+     * Which object types that would shunt (temporarily deactivate) this rule type. Is nil/omitted if there are no such object types.
+     */
+    shuntObjectTypes?: Array<string>;
 }
 

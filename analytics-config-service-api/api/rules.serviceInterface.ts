@@ -13,7 +13,7 @@ import { HttpHeaders }                                       from '@angular/comm
 
 import { Observable }                                        from 'rxjs';
 
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetRuleSpecResponse } from '../model/models';
+import { AnalyticsConfigApiV2GetRuleSpecResponse } from '../model/models';
 
 
 import { Configuration }                                     from '../configuration';
@@ -28,9 +28,9 @@ export interface RulesServiceInterface {
      * Get the available rules for this Account (and, optionally, the specified Sensor).
      * 
      * @param sensorId Optionally limit the response to what is available for the Sensor with the specified ID.
-     * @param language Optionally specify which language to use for returned human-readable texts. Only applicable when \&#39;responseFields\&#39; param contains \&#39;ui\&#39;
+     * @param language Optionally specify which language to use for returned human-readable texts. Only applicable when \&#39;responseFields\&#39; param contains \&#39;uiInfo\&#39;
      * @param responseFields Comma-separated list of fields to include in response. By default, no fields will be populated.
      */
-    v2RulesSpecGet(sensorId?: string, language?: 'en-US' | 'es-ES' | 'fr-FR' | 'ja-JP' | 'de-DE' | 'ru-RU' | 'hi-IN' | 'zh-CN', responseFields?: Array<'rules' | 'attributes' | 'ui'>, extraHttpRequestParams?: any): Observable<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetRuleSpecResponse>;
+    v2RulesSpecGet(sensorId?: string, language?: 'en-US' | 'es-ES' | 'fr-FR' | 'ja-JP' | 'de-DE' | 'ru-RU' | 'hi-IN' | 'zh-CN', responseFields?: Array<'rules' | 'attributes' | 'uiInfo'>, extraHttpRequestParams?: any): Observable<AnalyticsConfigApiV2GetRuleSpecResponse>;
 
 }

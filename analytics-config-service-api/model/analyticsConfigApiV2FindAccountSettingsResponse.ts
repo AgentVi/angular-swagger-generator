@@ -9,14 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse } from './githubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse';
+import { AnalyticsConfigApiV2GetAccountSettingsResponse } from './analyticsConfigApiV2GetAccountSettingsResponse';
 
 
-export interface GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2FindAccountSettingsResponse { 
+export interface AnalyticsConfigApiV2FindAccountSettingsResponse { 
     /**
      * The Account Settings data
      */
-    accountSettings?: Array<GithubComAgentviInnoviCoreBackendAnalyticsConfigApiApiV2GetAccountSettingsResponse>;
+    accountSettings?: Array<AnalyticsConfigApiV2GetAccountSettingsResponse>;
     /**
      * Cursor is an opaque string representing this batch of results. The value can be put in the \'after\' field of another request to fetch the next batch of results. Will be omitted in case there are no more results.
      */
